@@ -11,7 +11,7 @@ namespace Registrar
         .UseKestrel()
         .UseContentRoot(Directory.GetCurrentDirectory())
         .UseIISIntegration()
-        .useWebRoot("Static")
+        .UseWebRoot("Static")
         .UseStartup<Startup>()
         .Build();
 

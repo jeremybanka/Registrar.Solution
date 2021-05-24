@@ -5,7 +5,7 @@ using System.IO;
 
 namespace Registrar.Models
 {
-  public class Registrar : IDesignTimeDbContextFactory<RegistrarContext>
+  public class RegistrarContextFactory : IDesignTimeDbContextFactory<RegistrarContext>
   {
 
     RegistrarContext IDesignTimeDbContextFactory<RegistrarContext>.CreateDbContext(string[] args)
