@@ -1,0 +1,14 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Registrar.Models.Course
+<header>
+  <h2>Course Details</h2>
+</header>
+<main>
+  <h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h3>
+  <p>@Html.ActionLink("Edit Course", "Edit", new { id = Model.CourseId })</p>
+  <p>@Html.ActionLink("Delete Course", "Delete", new { id = Model.CourseId })</p>
+  <p>@Html.ActionLink("Back to Courses", "Index")</p>
+</main>

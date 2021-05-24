@@ -3,15 +3,16 @@
 
 <head>
   <meta charset="utf-8">
-  <title>My To-Do List!</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-  <link rel="stylesheet" href="~/css/styles.css">
+  <title>Registrar Manager</title>
+  @*<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">*@
+  <link rel="stylesheet" href="~/styles/reset.css">
+  <link rel="stylesheet" href="~/styles/main.css">
 </head>
 
-<body class="container">
+<body>
   @RenderBody()
-  @await Html.PartialAsync("Footer")
+  @* @await Html.PartialAsync("Footer") *@
 </body>
 
 </html>

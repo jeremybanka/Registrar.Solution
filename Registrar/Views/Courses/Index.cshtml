@@ -1,0 +1,21 @@
+@{
+  Layout = "_Layout";
+}
+@using Registrar.Models;
+<header>
+  <h1>Courses</h1>
+</header>
+<main>
+  @if (@Model.Count == 0)
+  {
+    <h3>There are no courses yet.</h3>
+  }
+  <ul>
+    @foreach (Course c in Model)
+    {
+      <li>@Html.ActionLink($"{c.Name}", "Details", new {id = c.CourseId})</li>
+    }
+  </ul>
+  <p>@Html.ActionLink("Add a course", "Create")</p>
+  <p>@Html.ActionLink("Go back to home", "Index", "Home")</p>
+</main>
