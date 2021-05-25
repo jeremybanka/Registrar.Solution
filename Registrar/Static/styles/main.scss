@@ -2,6 +2,10 @@
     --bg-color: #eee;
     --fg-color: #444;
     --mg-color: #888;
+    --blue-color:  #add8e6;
+    --purple-color: #E6BBAD;
+    $a-tags: 'a, a:active, a:hover, a:visited';
+    $a-tags-hover: 'a:active, a:hover';
     body {
         font-family: Charter;
         font-size: 20px;
@@ -15,6 +19,20 @@
             max-width: 600px;
             position: relative;
             margin: auto;
+                    
+            ul, li {
+                color: var(--purple-color);
+                margin-left: 24px;
+            }
+        
+    
+            a{
+            color: var(--fg-color);
+            padding-bottom: 16px;
+            &:hover {
+                       color: var(--blue-color);
+                   }
+            }
             form {
                 input {
                     font-size: 20px;
@@ -34,15 +52,10 @@
                     }
  
                 }
-                
-                ul {
-                    li {
-                        ~ li {
-
-                        }
-                    }
-                }
+               
+              
             }
+
         }
     }
 }

@@ -2,6 +2,8 @@
   --bg-color: #eee;
   --fg-color: #444;
   --mg-color: #888;
+  --blue-color:  #add8e6;
+  --purple-color: #E6BBAD;
 }
 
 :root body {
@@ -20,6 +22,20 @@
   max-width: 600px;
   position: relative;
   margin: auto;
+}
+
+:root body header ul, :root body header li, :root body main ul, :root body main li {
+  color: var(--purple-color);
+  margin-left: 24px;
+}
+
+:root body header a, :root body main a {
+  color: var(--fg-color);
+  padding-bottom: 16px;
+}
+
+:root body header a:hover, :root body main a:hover {
+  color: var(--blue-color);
 }
 
 :root body header form input, :root body main form input {
