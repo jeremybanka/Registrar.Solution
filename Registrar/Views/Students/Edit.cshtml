@@ -18,7 +18,11 @@
     @Html.EditorFor(model => model.Name)
     <input type="submit" value="Save" />
   }
-  @using (Html.BeginForm("Create", "CourseStudents", new { redirectTo = "Students" }))
+  @using (Html.BeginForm(
+  "Create",
+  "CourseStudents",
+  new { StudentId = Model.StudentId, origin = ViewBag.Controller }
+  ))
   {
     @Html.HiddenFor(model => model.StudentId)
     <section>
@@ -30,7 +34,11 @@
     @foreach (CourseStudent cs in Model.CourseStudents)
     {
       <li>
-        @using (Html.BeginForm("Delete", "CourseStudents", new { id = cs.CourseStudentId, redirectTo = "Students" }))
+        @using (Html.BeginForm(
+       "Delete",
+       "CourseStudents",
+       new { id = cs.CourseStudentId, origin = ViewBag.Controller }
+       ))
         {
           @cs.Course.Name
           <input type="submit" value="x">

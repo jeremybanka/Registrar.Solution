@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 using Registrar.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Registrar.Controllers
 {
@@ -34,7 +35,12 @@ namespace Registrar.Controllers
 
     public ActionResult Details(int id) => View(FindCourse(id));
 
-    public ActionResult Edit(int id) => View(FindCourse(id));
+    public ActionResult Edit(int id, string controller)
+    {
+      ViewBag.StudentId = new SelectList(_db.Students, "StudentId", "Name");
+      ViewBag.Controller = controller;
+      return View(FindCourse(id));
+    }
     [HttpPost]
     public ActionResult Edit(Course c)
     {

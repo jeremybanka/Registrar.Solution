@@ -1,6 +1,7 @@
 @{
   Layout = "_Layout";
 }
+@using Registrar.Models
 @model Registrar.Models.Course
 <header>
   <h1>Edit Course</h1>
@@ -14,6 +15,34 @@
     @Html.EditorFor(model => model.Name)
     <input type="submit" value="Save" />
   }
+  @using (Html.BeginForm(
+  "Create",
+  "CourseStudents",
+  new { CourseId = Model.CourseId, origin = ViewBag.Controller }
+  ))
+  {
+    @Html.HiddenFor(model => model.CourseId)
+    <section>
+      <input type="submit" value="Add Student" />
+      @Html.DropDownList("StudentId")
+    </section>
+  }
+  <ul>
+    @foreach (CourseStudent cs in Model.CourseStudents)
+    {
+      <li>
+        @using (Html.BeginForm(
+       "Delete",
+       "CourseStudents",
+       new { id = cs.CourseStudentId, origin = ViewBag.Controller }
+       ))
+        {
+          @cs.Student.Name
+          <input type="submit" value="x">
+        }
+      </li>
+    }
+  </ul>
   <p>@Html.ActionLink("Course List", "Index")</p>
   <p>@Html.ActionLink("Home", "Index", "Home")</p>
 </main>

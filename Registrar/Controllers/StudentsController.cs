@@ -27,7 +27,7 @@ namespace Registrar.Controllers
     public ActionResult Index() => View(AllStudents());
     public ActionResult Create()
     {
-      ViewBag.CourseId = new SelectList(_db.Courses, "CourseId", "Name");
+      ViewBag.Courses = new SelectList(_db.Courses, "CourseId", "Name");
       return View();
     }
 
@@ -44,10 +44,11 @@ namespace Registrar.Controllers
       return RedirectToAction("Index");
     }
     public ActionResult Details(int id) => View(FindStudent(id));
-    public ActionResult Edit(int id)
+    public ActionResult Edit(int id, string controller)
     {
       var thisStudent = FindStudent(id);
       ViewBag.CourseId = new SelectList(_db.Courses, "CourseId", "Name");
+      ViewBag.Controller = controller;
       return View(thisStudent);
     }
     [HttpPost]
