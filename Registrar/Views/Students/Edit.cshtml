@@ -1,16 +1,19 @@
 @{
   Layout = "_Layout";
 }
+
 @using Registrar.Models
-@model Registrar.Models.Course
+
+@model Registrar.Models.Student
 <header>
-  <h1>Edit Course</h1>
-  <h2>@Html.DisplayFor(model => model.Name)</h4>
+  <h1>Edit Student</h1>
 </header>
 <main>
+  <h3>@Html.DisplayFor(model => model.Name)</h3>
   @using (Html.BeginForm())
   {
-    @Html.HiddenFor(model => model.CourseId)
+    @Html.HiddenFor(model => model.StudentId)
+
     @Html.LabelFor(model => model.Name)
     @Html.EditorFor(model => model.Name)
     <input type="submit" value="Save" />
@@ -18,13 +21,13 @@
   @using (Html.BeginForm(
   "Create",
   "CourseStudents",
-  new { CourseId = Model.CourseId, origin = ViewBag.Controller }
+  new { StudentId = Model.StudentId, origin = ViewBag.Controller }
   ))
   {
-    @Html.HiddenFor(model => model.CourseId)
+    @Html.HiddenFor(model => model.StudentId)
     <section>
-      <input type="submit" value="Add Student" />
-      @Html.DropDownList("StudentId")
+      <input type="submit" value="Add Course" />
+      @Html.DropDownList("CourseId")
     </section>
   }
   <ul>
@@ -37,12 +40,12 @@
        new { id = cs.CourseStudentId, origin = ViewBag.Controller }
        ))
         {
-          @cs.Student.Name
+          @cs.Course.Name
           <input type="submit" value="x">
         }
       </li>
     }
   </ul>
-  <p>@Html.ActionLink("Course List", "Index")</p>
-  <p>@Html.ActionLink("Home", "Index", "Home")</p>
+
+  <p>@Html.ActionLink("Back to student list", "Index")</p>
 </main>
