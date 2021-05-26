@@ -1,12 +1,21 @@
 @{
   Layout = "_Layout";
 }
+@using Registrar.Models
 @model Registrar.Models.Student
 <header>
   <h1>Student details</h1>
 </header>
 <main>
   <h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h3>
+  <ul>
+    @foreach (CourseStudent cs in Model.CourseStudents)
+    {
+      <li>
+        @cs.Course.Name
+      </li>
+    }
+  </ul>
   <p>@Html.ActionLink("Edit Student", "Edit", new { id = Model.StudentId })</p>
   <p>@Html.ActionLink("Delete Student", "Delete", new { id = Model.StudentId })</p>
   <p>@Html.ActionLink("Back to list of students", "Index")</p>

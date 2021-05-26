@@ -12,5 +12,11 @@ namespace Registrar.Models
     {
       optionsBuilder.UseLazyLoadingProxies();
     }
+    protected override void OnModelCreating(ModelBuilder builder)
+    {
+      builder.Entity<CourseStudent>()
+          .HasIndex(cs => new { cs.StudentId, cs.CourseId })
+          .IsUnique();
+    }
   }
 }

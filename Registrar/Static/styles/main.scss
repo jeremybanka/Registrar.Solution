@@ -1,9 +1,13 @@
 :root {
+    --blue-color:  #add8e6;
+    --purple-color: #E6BBAD;
+
     --bg-color: #eee;
     --fg-color: #444;
     --mg-color: #888;
-    --blue-color:  #add8e6;
-    --purple-color: #E6BBAD;
+    --fg-color-list: #666;
+    --fg-color-link-hover: var(--blue-color);
+
     $a-tags: 'a, a:active, a:hover, a:visited';
     $a-tags-hover: 'a:active, a:hover';
     body {
@@ -14,6 +18,22 @@
         header {
             padding-top: 40px;
         }
+        main {
+            > * {
+                display: block;
+                ~ * {
+                    margin-top: 20px;
+                }
+            }
+            > form {
+                > * {
+                    display: block;
+                    ~ * {
+                        margin-top: 20px;
+                }
+            }
+            }
+        }
         header, main {
             width: calc(100% - 20px);
             max-width: 600px;
@@ -21,19 +41,27 @@
             margin: auto;
                     
             ul, li {
-                color: var(--purple-color);
+                color: var(--fg-color-list);
                 margin-left: 24px;
             }
-        
-    
-            a{
+            a {
             color: var(--fg-color);
             padding-bottom: 16px;
-            &:hover {
-                       color: var(--blue-color);
-                   }
+                &:hover {
+                    color: var(--fg-color-link-hover);
+                }
             }
             form {
+                select {
+                    font-size: 20px;
+                    padding: 8px;
+                        background-color: #fff;
+                        border-radius: 7px;
+                        &:hover {
+                            color: var(--bg-color);
+                            background-color: var(--mg-color);
+                        }  
+                }
                 input {
                     font-size: 20px;
                     margin-left: 4px;
@@ -42,7 +70,7 @@
                         border: 0.5px solid var(--mg-color);
                     }
                      &[type="submit"] {
-                         padding: 8px;
+                        padding: 8px;
                         background-color: #fff;
                         border-radius: 7px;
                         &:hover {

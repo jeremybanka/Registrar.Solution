@@ -17,11 +17,13 @@ namespace Registrar.Controllers
     }
 
     public List<Student> AllStudents() => _db.Students.ToList();
-    public void CreateNewStudentCourse(int courseId, int studentId) => _db.CourseStudents.Add(new CourseStudent() { CourseId = courseId, StudentId = studentId });
     public Student FindStudent(int id) => _db.Students
-    .Include(student => student.CourseStudents)
-    .ThenInclude(join => join.Course)
-    .FirstOrDefault(student => student.StudentId == id);
+      .Include(student => student.CourseStudents)
+      .ThenInclude(join => join.Course)
+      .FirstOrDefault(student => student.StudentId == id);
+
+    public void CreateNewStudentCourse(int courseId, int studentId) => _db.CourseStudents.Add(new CourseStudent() { CourseId = courseId, StudentId = studentId });
+
     public ActionResult Index() => View(AllStudents());
     public ActionResult Create()
     {
@@ -49,12 +51,8 @@ namespace Registrar.Controllers
       return View(thisStudent);
     }
     [HttpPost]
-    public ActionResult Edit(Student s, int CourseId)
+    public ActionResult Edit(Student s)
     {
-      if (CourseId != 0)
-      {
-        CreateNewStudentCourse(CourseId, s.StudentId);
-      }
       _db.Entry(s).State = EntityState.Modified;
       _db.SaveChanges();
       return RedirectToAction("Index");

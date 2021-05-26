@@ -2,20 +2,42 @@
   Layout = "_Layout";
 }
 
+@using Registrar.Models
+
 @model Registrar.Models.Student
 <header>
-  <h1>Edit the student</h1>
+  <h1>Edit Student</h1>
 </header>
 <main>
-  <h3>Edit this @Html.DisplayFor(model => model.Name)</h3>
+  <h3>@Html.DisplayFor(model => model.Name)</h3>
   @using (Html.BeginForm())
   {
     @Html.HiddenFor(model => model.StudentId)
 
     @Html.LabelFor(model => model.Name)
     @Html.EditorFor(model => model.Name)
-    @Html.DropDownList("CourseId")
     <input type="submit" value="Save" />
   }
+  @using (Html.BeginForm("Create", "CourseStudents", new { redirectTo = "Students" }))
+  {
+    @Html.HiddenFor(model => model.StudentId)
+    <section>
+      <input type="submit" value="Add Course" />
+      @Html.DropDownList("CourseId")
+    </section>
+  }
+  <ul>
+    @foreach (CourseStudent cs in Model.CourseStudents)
+    {
+      <li>
+        @using (Html.BeginForm("Delete", "CourseStudents", new { id = cs.CourseStudentId, redirectTo = "Students" }))
+        {
+          @cs.Course.Name
+          <input type="submit" value="x">
+        }
+      </li>
+    }
+  </ul>
+
   <p>@Html.ActionLink("Back to student list", "Index")</p>
 </main>
