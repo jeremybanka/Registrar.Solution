@@ -1,0 +1,18 @@
+@{
+  Layout = "_Layout";
+}
+@using Registrar.Models
+@model Registrar.Models.Department
+<header>
+  <h2>Department Details</h2>
+</header>
+<main>
+  <h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h3>
+  @foreach (Major m in Model.Majors)
+  {
+    @Html.ActionLink($"{@m.Student.Name}", "Details", "Students", new { id = m.Student.StudentId})
+  }
+  <p>@Html.ActionLink("Edit Department", "Edit", new { id = Model.DepartmentId })</p>
+  <p>@Html.ActionLink("Delete Department", "Delete", new { id = Model.DepartmentId })</p>
+  <p>@Html.ActionLink("Back to Departments", "Index")</p>
+</main>

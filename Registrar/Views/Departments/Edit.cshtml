@@ -2,48 +2,47 @@
   Layout = "_Layout";
 }
 @using Registrar.Models
-@model Registrar.Models.Course
+@model Registrar.Models.Department
 <header>
-  <h1>Edit Course</h1>
+  <h1>Edit Department</h1>
   <h2>@Html.DisplayFor(model => model.Name)</h4>
 </header>
 <main>
   @using (Html.BeginForm())
   {
-    @Html.HiddenFor(model => model.CourseId)
+    @Html.HiddenFor(model => model.DepartmentId)
     @Html.LabelFor(model => model.Name)
     @Html.EditorFor(model => model.Name)
-    @Html.DropDownList("DepartmentId")
     <input type="submit" value="Save" />
   }
   @using (Html.BeginForm(
   "Create",
-  "Enrollments",
-  new { CourseId = Model.CourseId, origin = ViewBag.Controller }
+  "Majors",
+  new { DepartmentId = Model.DepartmentId, origin = ViewBag.Controller }
   ))
   {
-    @Html.HiddenFor(model => model.CourseId)
+    @Html.HiddenFor(model => model.DepartmentId)
     <section>
       <input type="submit" value="Add Student" />
       @Html.DropDownList("StudentId")
     </section>
   }
   <ul>
-    @foreach (Enrollment e in Model.Enrollments)
+    @foreach (Major m in Model.Majors)
     {
       <li>
         @using (Html.BeginForm(
        "Delete",
-       "Enrollments",
-       new { id = e.EnrollmentId, origin = ViewBag.Controller }
+       "Majors",
+       new { id = m.MajorId, origin = ViewBag.Controller }
        ))
         {
-          @e.Student.Name
+          @m.Student.Name
           <input type="submit" value="x">
         }
       </li>
     }
   </ul>
-  <p>@Html.ActionLink("Course List", "Index")</p>
+  <p>@Html.ActionLink("Department List", "Index")</p>
   <p>@Html.ActionLink("Home", "Index", "Home")</p>
 </main>

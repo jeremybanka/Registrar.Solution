@@ -18,13 +18,17 @@ namespace Registrar.Controllers
 
     public List<Course> AllCourses() => _db.Courses.ToList();
     public Course FindCourse(int id) => _db.Courses
-      .Include(course => course.CourseStudents)
+      .Include(course => course.Enrollments)
       .ThenInclude(join => join.Student)
       .FirstOrDefault(course => course.CourseId == id);
 
     public ActionResult Index() => View(AllCourses());
 
-    public ActionResult Create() => View();
+    public ActionResult Create()
+    {
+      ViewBag.DepartmentId = new SelectList(_db.Departments, "DepartmentId", "Name");
+      return View();
+    }
     [HttpPost]
     public ActionResult Create(Course c)
     {
@@ -37,6 +41,7 @@ namespace Registrar.Controllers
 
     public ActionResult Edit(int id, string controller)
     {
+      ViewBag.DepartmentId = new SelectList(_db.Departments, "DepartmentId", "Name");
       ViewBag.StudentId = new SelectList(_db.Students, "StudentId", "Name");
       ViewBag.Controller = controller;
       return View(FindCourse(id));

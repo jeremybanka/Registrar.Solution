@@ -10,6 +10,7 @@
   {
     @Html.LabelFor(model => model.Name)
     @Html.TextBoxFor(model => model.Name)
+    @Html.DropDownList("DepartmentId")
     <input type="submit" value="Add Course" />
   }
   <p>@Html.ActionLink("Go back to Courses", "Index")</p>

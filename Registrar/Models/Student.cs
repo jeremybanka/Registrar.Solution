@@ -8,13 +8,15 @@ namespace Registrar.Models
   {
     public Student()
     {
-      CourseStudents = new HashSet<CourseStudent>();
+      Enrollments = new HashSet<Enrollment>();
+      Majors = new HashSet<Major>();
     }
 
     public string Name { get; set; }
     public int StudentId { get; set; }
     public DateTime DateEnrolled { get; set; }
-    public virtual ICollection<CourseStudent> CourseStudents { get; set; }
+    public virtual ICollection<Major> Majors { get; set; }
+    public virtual ICollection<Enrollment> Enrollments { get; set; }
   }
 
 
