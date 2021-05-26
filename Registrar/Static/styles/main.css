@@ -1,6 +1,6 @@
 :root {
-  --blue-color:  #add8e6;
-  --purple-color: #E6BBAD;
+  --blue-color: #add8e6;
+  --purple-color: #e6bbad;
   --bg-color: #eee;
   --fg-color: #444;
   --mg-color: #888;
@@ -35,56 +35,75 @@
   margin-top: 20px;
 }
 
-:root body header, :root body main {
+:root body header,
+:root body main {
   width: calc(100% - 20px);
   max-width: 600px;
   position: relative;
   margin: auto;
 }
 
-:root body header ul, :root body header li, :root body main ul, :root body main li {
+:root body header ul,
+:root body header li,
+:root body main ul,
+:root body main li {
   color: var(--fg-color-list);
   margin-left: 24px;
 }
 
-:root body header a, :root body main a {
+:root body header a,
+:root body main a {
   color: var(--fg-color);
   padding-bottom: 16px;
 }
 
-:root body header a:hover, :root body main a:hover {
+:root body header a:hover,
+:root body main a:hover {
   color: var(--fg-color-link-hover);
 }
 
-:root body header form select, :root body main form select {
+:root body header form select,
+:root body header form input,
+:root body main form select,
+:root body main form input {
+  font-family: Verdana;
+}
+
+:root body header form select,
+:root body main form select {
   font-size: 20px;
   padding: 8px;
   background-color: #fff;
   border-radius: 7px;
 }
 
-:root body header form select:hover, :root body main form select:hover {
+:root body header form select:hover,
+:root body main form select:hover {
   color: var(--bg-color);
   background-color: var(--mg-color);
 }
 
-:root body header form input, :root body main form input {
+:root body header form input,
+:root body main form input {
   font-size: 20px;
   margin-left: 4px;
 }
 
-:root body header form input[type="text"], :root body main form input[type="text"] {
+:root body header form input[type="text"],
+:root body main form input[type="text"] {
   padding: 2px;
   border: 0.5px solid var(--mg-color);
 }
 
-:root body header form input[type="submit"], :root body main form input[type="submit"] {
+:root body header form input[type="submit"],
+:root body main form input[type="submit"] {
   padding: 8px;
   background-color: #fff;
   border-radius: 7px;
 }
 
-:root body header form input[type="submit"]:hover, :root body main form input[type="submit"]:hover {
+:root body header form input[type="submit"]:hover,
+:root body main form input[type="submit"]:hover {
   color: var(--bg-color);
   background-color: var(--mg-color);
 }
