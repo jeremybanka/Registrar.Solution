@@ -20,7 +20,7 @@
   }
   @using (Html.BeginForm(
   "Create",
-  "CourseStudents",
+  "Enrollments",
   new { StudentId = Model.StudentId, origin = ViewBag.Controller }
   ))
   {
@@ -31,16 +31,16 @@
     </section>
   }
   <ul>
-    @foreach (CourseStudent cs in Model.CourseStudents)
+    @foreach (Enrollment e in Model.Enrollments)
     {
       <li>
         @using (Html.BeginForm(
        "Delete",
-       "CourseStudents",
-       new { id = cs.CourseStudentId, origin = ViewBag.Controller }
+       "Enrollments",
+       new { id = e.EnrollmentId, origin = ViewBag.Controller }
        ))
         {
-          @cs.Course.Name
+          @e.Course.Name
           <input type="submit" value="x">
         }
       </li>

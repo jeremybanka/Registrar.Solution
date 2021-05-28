@@ -14,9 +14,8 @@
     @Html.TextBoxFor(model => model.Name)
 
     @Html.LabelFor(model => model.DateEnrolled)
-    @Html.TextBoxFor(model => model.DateEnrolled,
-  new { @type = "date" })
-    @Html.DropDownList("CourseId")
+    @Html.TextBoxFor(model => model.DateEnrolled, new { @type = "date" })
+    @Html.DropDownList("DepartmentId")
     <input type="submit" value="Add student" />
   }
   <p>@Html.ActionLink("Back to students", "Index")</p>

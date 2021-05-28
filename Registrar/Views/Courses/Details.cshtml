@@ -5,13 +5,32 @@
 @model Registrar.Models.Course
 <header>
   <h2>Course Details</h2>
+  <h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h3>
+  <h4>@Html.DisplayNameFor(model => model.Department): @Html.DisplayFor(model => model.Department.Name)</h4>
 </header>
 <main>
-  <h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h3>
-  @foreach (CourseStudent cs in Model.CourseStudents)
-  {
-    @Html.ActionLink($"{@cs.Student.Name}", "Details", "Students", new { id = cs.Student.StudentId})
-  }
+  <h4>Students:</h4>
+  <table>
+    <thead>
+      <tr>
+        <th colspan="2">Students</th>
+      </tr>
+      <tr>
+        <th>Name</th>
+        <th>Date Enrolled</th>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach (Enrollment e in Model.Enrollments)
+      {
+        <tr>
+          <td>@Html.ActionLink($"{@e.Student.Name}", "Details", "Students", new { id = e.Student.StudentId})</td>
+          <td>@e.Student.DateEnrolled</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+
   <p>@Html.ActionLink("Edit Course", "Edit", new { id = Model.CourseId })</p>
   <p>@Html.ActionLink("Delete Course", "Delete", new { id = Model.CourseId })</p>
   <p>@Html.ActionLink("Back to Courses", "Index")</p>

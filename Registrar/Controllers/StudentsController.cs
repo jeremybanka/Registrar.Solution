@@ -18,27 +18,27 @@ namespace Registrar.Controllers
 
     public List<Student> AllStudents() => _db.Students.ToList();
     public Student FindStudent(int id) => _db.Students
-      .Include(student => student.CourseStudents)
+      .Include(student => student.Enrollments)
       .ThenInclude(join => join.Course)
       .FirstOrDefault(student => student.StudentId == id);
 
-    public void CreateNewStudentCourse(int courseId, int studentId) => _db.CourseStudents.Add(new CourseStudent() { CourseId = courseId, StudentId = studentId });
+    public void AssignMajor(int departmentId, int studentId) => _db.Majors.Add(new Major() { DepartmentId = departmentId, StudentId = studentId });
 
     public ActionResult Index() => View(AllStudents());
     public ActionResult Create()
     {
-      ViewBag.Courses = new SelectList(_db.Courses, "CourseId", "Name");
+      ViewBag.DepartmentId = new SelectList(_db.Departments, "DepartmentId", "Name");
       return View();
     }
 
     [HttpPost]
-    public ActionResult Create(Student s, int CourseId)
+    public ActionResult Create(Student s, int DepartmentId)
     {
       _db.Students.Add(s);
       _db.SaveChanges();
-      if (CourseId != 0)
+      if (DepartmentId != 0)
       {
-        CreateNewStudentCourse(CourseId, s.StudentId);
+        AssignMajor(DepartmentId, s.StudentId);
       }
       _db.SaveChanges();
       return RedirectToAction("Index");
